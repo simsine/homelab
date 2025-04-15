@@ -1,0 +1,7 @@
+- name: Update all machines
+  hosts:
+    # Your list of hosts here
+    all
+  roles:
+    # Add roles here
+    - update
