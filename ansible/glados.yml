@@ -1,0 +1,63 @@
+---
+- name: Glados config
+  hosts:
+    - glados
+
+  tasks:
+    - name: Caddy service
+      ansible.builtin.service:
+        name: caddy
+        enabled: true
+      become: true
+    - name: Write Caddy config
+      ansible.builtin.template:
+        src: templates/glados/Caddyfile
+        dest: /etc/caddy/Caddyfile
+        mode: "0644"
+      become: true
+      notify: Restart Caddy
+
+    - name: HAProxy service
+      ansible.builtin.service:
+        name: caddy
+        enabled: false
+      become: true
+    - name: Write HAProxy config
+      ansible.builtin.template:
+        src: templates/glados/haproxy.cfg
+        dest: /etc/haproxy/haproxy.cfg
+        mode: "0644"
+      become: true
+      notify: Restart HAProxy
+
+    - name: Headscale service
+      ansible.builtin.service:
+        name: headscale
+        enabled: true
+      become: true
+    - name: Write Headscale config
+      ansible.builtin.template:
+        src: templates/glados/headscale.config.yaml
+        dest: /etc/headscale/config.yaml
+        mode: "0644"
+      become: true
+      notify: Restart HAProxy
+
+  handlers:
+    - name: Restart Caddy
+      ansible.builtin.service:
+        name: caddy
+        state: restarted
+      become: true
+
+    - name: Restart HAProxy
+      ansible.builtin.service:
+        name: haproxy
+        state: restarted
+      become: true
+
+    - name: Restart Headscale
+      ansible.builtin.service:
+        name: headscale
+        state: restarted
+      become: true
