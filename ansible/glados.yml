@@ -4,6 +4,26 @@
     - glados
 
   tasks:
+    - name: Write motd
+      ansible.builtin.template:
+        src: templates/glados/motd
+        dest: /etc/motd
+        mode: "0644"
+      become: true
+
+    - name: Write Yatzy service
+      ansible.builtin.template:
+        src: templates/glados/yatzy.service
+        dest: /etc/systemd/system/yatzy.service
+        mode: "0750"
+      become: true
+      notify: Restart Yatzy
+    - name: Yatzy service
+      ansible.builtin.service:
+        name: yatzy
+        enabled: true
+      become: true
+
     - name: Caddy service
       ansible.builtin.service:
         name: caddy
@@ -44,6 +64,12 @@
       notify: Restart HAProxy
 
   handlers:
+    - name: Restart Yatzy
+      ansible.builtin.service:
+        name: caddy
+        state: restarted
+      become: true
+
     - name: Restart Caddy
       ansible.builtin.service:
         name: caddy

@@ -19,6 +19,6 @@ bupie.no {
         file_server
 }
 
-jellyfin.bupie.no {
-        reverse_proxy wheatley.vpn.simsine.no:8096
-}
+# jellyfin.bupie.no {
+#         reverse_proxy wheatley.vpn.simsine.no:8096
+# }
