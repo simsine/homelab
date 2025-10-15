@@ -15,19 +15,30 @@
       ansible.builtin.template:
         src: templates/glados/yatzy.service
         dest: /etc/systemd/system/yatzy.service
-        mode: "0750"
+        mode: "0644"
       become: true
-      notify: Restart Yatzy
+    - name: Write Yatzy socket
+      ansible.builtin.template:
+        src: templates/glados/yatzy.socket
+        dest: /etc/systemd/system/yatzy.socket
+        mode: "0644"
+      become: true
     - name: Yatzy service
-      ansible.builtin.service:
+      ansible.builtin.systemd_service:
+        name: yatzy
+        enabled: true
+      become: true
+    - name: Yatzy socket
+      ansible.builtin.systemd_service:
         name: yatzy
         enabled: true
       become: true
 
     - name: Caddy service
-      ansible.builtin.service:
+      ansible.builtin.systemd_service:
         name: caddy
         enabled: true
+        state: started
       become: true
     - name: Write Caddy config
       ansible.builtin.template:
@@ -38,9 +49,10 @@
       notify: Restart Caddy
 
     - name: HAProxy service
-      ansible.builtin.service:
-        name: caddy
+      ansible.builtin.systemd_service:
+        name: haproxy
         enabled: false
+        state: stopped
       become: true
     - name: Write HAProxy config
       ansible.builtin.template:
@@ -51,9 +63,10 @@
       notify: Restart HAProxy
 
     - name: Headscale service
-      ansible.builtin.service:
+      ansible.builtin.systemd_service:
         name: headscale
         enabled: true
+        state: started
       become: true
     - name: Write Headscale config
       ansible.builtin.template:
@@ -65,25 +78,25 @@
 
   handlers:
     - name: Restart Yatzy
-      ansible.builtin.service:
+      ansible.builtin.systemd_service:
         name: caddy
         state: restarted
       become: true
 
     - name: Restart Caddy
-      ansible.builtin.service:
+      ansible.builtin.systemd_service:
         name: caddy
         state: restarted
       become: true
 
     - name: Restart HAProxy
-      ansible.builtin.service:
+      ansible.builtin.systemd_service:
         name: haproxy
         state: restarted
       become: true
 
     - name: Restart Headscale
-      ansible.builtin.service:
+      ansible.builtin.systemd_service:
         name: headscale
         state: restarted
       become: true
