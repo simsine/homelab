@@ -10,5 +10,8 @@ jobs:
     name: Test Ansible playbooks
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+
       - name: aaa
-        run: ansible-playbook --syntax-check *.yml
+        run: ansible-playbook --syntax-check ./ansible/*.yml
