@@ -1,0 +1,14 @@
+name: Run Ansible tests
+
+on:
+  pull_request:
+    branches: [ "main" ]
+  workflow_call:
+
+jobs:
+  test_ansible_playbooks:
+    name: Test Ansible playbooks
+    runs-on: ubuntu-latest
+    steps:
+      - name: aaa
+        run: ansible-playbook --syntax-check *.yml
