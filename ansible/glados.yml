@@ -1,7 +1,10 @@
 ---
 - name: Glados config
+  become: true
   hosts:
     - glados
+  # roles:
+  #   - nginx
 
   tasks:
     - name: Write motd
@@ -30,15 +33,15 @@
       become: true
     - name: Yatzy socket
       ansible.builtin.systemd_service:
-        name: yatzy
-        enabled: true
+        name: yatzy.socket
+        enabled: false
       become: true
 
     - name: Caddy service
       ansible.builtin.systemd_service:
         name: caddy
-        enabled: true
-        state: started
+        enabled: false
+        state: stopped
       become: true
     - name: Write Caddy config
       ansible.builtin.template:
@@ -62,6 +65,25 @@
       become: true
       notify: Restart HAProxy
 
+    - name: Write nginx config
+      ansible.builtin.template:
+        src: templates/glados/nginx.conf
+        dest: /etc/nginx/nginx.conf
+        mode: "0644"
+      become: true
+    - name: Test nginx config
+      ansible.builtin.command: nginx -t
+      become: true
+      register: nginx_config_state
+      notify: Restart nginx
+    - name: Nginx service
+      ansible.builtin.systemd_service:
+        name: nginx
+        enabled: true
+        state: started
+      when: nginx_config_state.failed == false
+      become: true
+
     - name: Headscale service
       ansible.builtin.systemd_service:
         name: headscale
@@ -79,7 +101,7 @@
   handlers:
     - name: Restart Yatzy
       ansible.builtin.systemd_service:
-        name: caddy
+        name: yatzy
         state: restarted
       become: true
 
@@ -98,5 +120,11 @@
     - name: Restart Headscale
       ansible.builtin.systemd_service:
         name: headscale
+        state: restarted
+      become: true
+
+    - name: Restart nginx
+      ansible.builtin.systemd_service:
+        name: nginx
         state: restarted
       become: true
