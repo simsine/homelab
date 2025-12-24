@@ -13,5 +13,5 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v4
 
-      - name: aaa
+      - name: Test syntax of playbooks in ansible folder
         run: ansible-playbook --syntax-check ./ansible/*.yml
