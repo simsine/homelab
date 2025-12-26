@@ -1,5 +1,15 @@
-# Aperture Science Homelab
+# Aperture Science Home Laboratories
 
-Edit on (https://app.diagrams.net/)
+## Technical diagram
+
+Can be edited with [drawio](https://app.diagrams.net/)
 
 ![Homelab diagram](./homelab.drawio.png)
+
+## Ansible
+
+To run ansible configurations:
+
+```bash
+./run_ansible.sh
+```
