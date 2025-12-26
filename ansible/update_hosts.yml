@@ -1,5 +1,5 @@
 - name: Update all hosts
   hosts:
-    - all
+    - glados
   roles:
-    - update-host
+    - update_host

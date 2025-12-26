@@ -1,0 +1,11 @@
+- name: Write motd
+  ansible.builtin.template:
+    src: templates/motd.j2
+    dest: /etc/motd
+    mode: "0644"
+  become: true
+
+- name: Install common packages
+  ansible.builtin.apt:
+    pkg:
+      - htop
