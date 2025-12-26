@@ -1,0 +1,28 @@
+- name: Create copyparty srv dir
+  ansible.builtin.file:
+    path: /srv/copyparty
+    state: directory
+    mode: "0644"
+  become: true
+
+- name: Create copyparty etc dir
+  ansible.builtin.file:
+    path: /etc/copyparty
+    state: directory
+    mode: "0644"
+  become: true
+
+- name: Write copyparty config file
+  ansible.builtin.template:
+    src: templates/copyparty.conf
+    dest: /etc/copyparty
+    mode: "0644"
+  become: true
+
+- name: Write copyparty container file
+  ansible.builtin.template:
+    src: templates/copyparty.container
+    dest: /etc/containers/systemd
+    mode: "0644"
+  notify: Reload systemd
+  become: true
