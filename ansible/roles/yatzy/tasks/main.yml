@@ -1,0 +1,25 @@
+- name: Write Yatzy service
+  ansible.builtin.template:
+    src: templates/yatzy.service
+    dest: /etc/systemd/system/yatzy.service
+    mode: "0644"
+  become: true
+
+- name: Write Yatzy socket
+  ansible.builtin.template:
+    src: templates/yatzy.socket
+    dest: /etc/systemd/system/yatzy.socket
+    mode: "0644"
+  become: true
+
+- name: Yatzy service
+  ansible.builtin.systemd_service:
+    name: yatzy
+    enabled: true
+  become: true
+
+- name: Yatzy socket state
+  ansible.builtin.systemd_service:
+    name: yatzy.socket
+    enabled: false
+  become: true
