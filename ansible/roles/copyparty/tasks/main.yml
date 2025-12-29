@@ -17,6 +17,7 @@
     src: templates/copyparty.conf
     dest: /etc/copyparty
     mode: "0644"
+  notify: Restart Copyparty
   become: true
 
 - name: Write copyparty container file

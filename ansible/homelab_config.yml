@@ -4,10 +4,10 @@
   hosts:
     - glados
   roles:
-    - common
-    - headscale
-    - nginx
-    - yatzy
-    - caddy
-    - haproxy
+    # - common
+    # - headscale
+    # - nginx
+    # - yatzy
+    # - caddy
+    # - haproxy
     - copyparty
