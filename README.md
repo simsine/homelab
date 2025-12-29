@@ -8,8 +8,20 @@ Can be edited with [drawio](https://app.diagrams.net/)
 
 ## Ansible
 
-To run ansible configurations:
+First create a sudo password file and enter the sudo password
 
 ```bash
-./run_ansible.sh
+nano ./ansible/.sudo_password
+```
+
+To run ansible configurations
+
+```bash
+./run_config.sh
+```
+
+To run ansible host updates
+
+```bash
+./run_update.sh
 ```

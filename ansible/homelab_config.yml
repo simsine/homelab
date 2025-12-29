@@ -8,6 +8,5 @@
     - headscale
     - nginx
     - yatzy
-    - caddy
     - haproxy
     - copyparty
