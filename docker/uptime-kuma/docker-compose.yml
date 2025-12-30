@@ -1,8 +1,0 @@
-services:
-  uptime-kuma:
-    image: louislam/uptime-kuma:2
-    ports:
-      - 3001:3001
-    restart: always
-    volumes:
-      - ./kuma-data:/app/data
