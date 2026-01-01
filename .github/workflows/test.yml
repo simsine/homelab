@@ -6,12 +6,19 @@ on:
   workflow_call:
 
 jobs:
-  test_ansible_playbooks:
-    name: Test Ansible playbooks
+  test_ansible:
+    name: Test Ansible
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v4
 
-      - name: Test syntax of playbooks in ansible folder
-        run: ansible-playbook --syntax-check ./ansible/*.yml
+      - name: Test syntax of Ansible playbooks
+        run: ansible-playbook -i ./ansible/hosts.ini --syntax-check ./ansible/*.yml
+
+      - name: Test syntax of Ansible roles
+        run: ansible-playbook -i ./ansible/hosts.ini --syntax-check ./ansible/*.yml
+
+      - name: Lint all Ansible files
+        run: ansible-lint ./ansible
+
