@@ -13,11 +13,14 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v4
 
+      - name: Install ansible-lint
+        run: pip install ansible-lint
+
       - name: Test syntax of Ansible playbooks
         run: ansible-playbook -i ./ansible/hosts.ini --syntax-check ./ansible/*.yml
 
       - name: Test syntax of Ansible roles
-        run: ansible-playbook -i ./ansible/hosts.ini --syntax-check ./ansible/*.yml
+        run: ansible-playbook -i ./ansible/hosts.ini --syntax-check ./ansible/roles/*/tasks*.yml
 
       - name: Lint all Ansible files
         run: ansible-lint ./ansible
