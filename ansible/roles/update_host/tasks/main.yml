@@ -8,9 +8,9 @@
 - name: Check if reboot is needed
   ansible.builtin.stat:
     path: /var/run/reboot-required
-  register: check_reboot
+  register: update_host_reboot_required
 
 - name: Reboot if needed
   ansible.builtin.reboot:
   become: true
-  when: check_reboot.stat.exists
+  when: update_host_reboot_required.stat.exists
