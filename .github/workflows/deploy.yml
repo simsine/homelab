@@ -20,6 +20,6 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v4
       - name: Write ansible sudo password file
-        run: printf '%s' '${{ secrets.mysecret }}' > ./ansible/.sudo_password
+        run: printf '%s' '${{ secrets.ANSIBLE_SUDO_PASSWORD }}' > ./ansible/.sudo_password
       - name: Run ansible config
         run: bash ./run_config.sh
