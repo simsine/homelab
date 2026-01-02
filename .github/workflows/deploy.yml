@@ -1,0 +1,25 @@
+name: Deploy Ansible configuration
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run_tests:
+    name: Run tests
+    uses: ./.github/workflows/tests.yml
+  deploy_config:
+    name: Deploy configuration
+    runs-on: ubuntu-latest
+    steps:
+      - name: Connect to tailnet
+        uses: tailscale/github-action@v4
+        with:
+          statedir: /tmp/tailscale-state/
+          args: --login-server ${{ secrets.TS_LOGIN_SERVER}}
+          authkey: ${{ secrets.TS_PREAUTH_KEY}}
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+      - name: Write ansible sudo password file
+        run: printf '%s' '${{ secrets.mysecret }}' > ./ansible/.sudo_password
+      - name: Run ansible config
+        run: bash ./run_config.sh
