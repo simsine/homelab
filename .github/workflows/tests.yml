@@ -1,4 +1,4 @@
-name: tests
+name: Tests
 run-name: Run Ansible tests
 
 on:
@@ -19,4 +19,3 @@ jobs:
 
       - name: Lint all Ansible files
         run: ansible-lint ./ansible
-
