@@ -1,4 +1,5 @@
-name: Run Ansible tests
+name: tests
+run-name: Run Ansible tests
 
 on:
   pull_request:
