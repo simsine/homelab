@@ -1,10 +1,18 @@
 - name: Write Headscale config
   ansible.builtin.template:
     src: templates/config.yaml
-    dest: /etc/headscale/config.yaml
+    dest: /etc/headscale
     mode: "0644"
   become: true
-  notify: Restart headscale
+  notify: Restart Headscale
+
+- name: Write Headscale acl
+  ansible.builtin.template:
+    src: templates/acl.json
+    dest: /etc/headscale
+    mode: "0644"
+  become: true
+  notify: Restart Headscale
 
 - name: Headscale service
   ansible.builtin.systemd_service:
