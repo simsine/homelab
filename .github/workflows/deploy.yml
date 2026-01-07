@@ -27,6 +27,9 @@ jobs:
           known_hosts: ${{ secrets.KNOWN_HOSTS }}
 
 
+      - name: Install ansible posix
+        run: ansible-galaxy collection install ansible.posix
+
       - name: Checkout the repository
         uses: actions/checkout@v4
 
