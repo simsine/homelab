@@ -27,7 +27,7 @@ jobs:
           known_hosts: ${{ secrets.KNOWN_HOSTS }}
 
 
-      - name: Install ansible posix
+      - name: Install ansible.posix
         run: ansible-galaxy collection install ansible.posix
 
       - name: Checkout the repository
