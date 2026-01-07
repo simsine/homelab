@@ -18,5 +18,14 @@
   ansible.builtin.systemd_service:
     name: headscale
     enabled: true
-    state: started
   become: true
+
+- name: Enable ipv4 forwarding for exit node
+  ansible.posix.sysctl:
+    key: net.ipv4.ip_forward
+    value: "1"
+
+- name: Enable ipv6 forwarding for exit node
+  ansible.posix.sysctl:
+    key: net.ipv6.conf.all.forwarding
+    value: "1"
