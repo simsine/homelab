@@ -25,3 +25,15 @@ To run ansible host updates
 ```bash
 ./run_update.sh
 ```
+
+## Headscale as exit node
+
+If the headscale node has an id of 2 it can be allowed to be used as an exit node by entering the following
+
+```bash
+sudo headscale nodes approve-routes -i <NODE-ID> -r 0.0.0.0/0
+```
+
+```bash
+sudo tailscale set --advertise-exit-node
+```
