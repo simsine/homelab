@@ -14,19 +14,13 @@
     src: templates/nginx.conf
     dest: /etc/nginx/nginx.conf
     mode: "0644"
+    validate: /usr/sbin/nginx -t %s
   notify: Restart nginx
   become: true
-
-- name: Test nginx config
-  ansible.builtin.command: nginx -t
-  become: true
-  register: nginx_config_state
-  changed_when: false
-  failed_when: nginx_config_state.failed is true
 
 - name: Nginx service
   ansible.builtin.systemd_service:
     name: nginx
     enabled: true
-  when: nginx_config_state.failed is false
+    state: started
   become: true
