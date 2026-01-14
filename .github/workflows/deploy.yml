@@ -26,15 +26,14 @@ jobs:
           key: ${{ secrets.ANSIBLE_SSH_KEY }}
           known_hosts: ${{ secrets.KNOWN_HOSTS }}
 
-
-      - name: Install ansible.posix
-        run: ansible-galaxy collection install ansible.posix
-
       - name: Checkout the repository
         uses: actions/checkout@v4
+
+      - name: Run Ansible setup
+        run: bash ./setup.sh
 
       - name: Write ansible sudo password file
         run: printf '%s' '${{ secrets.ANSIBLE_SUDO_PASSWORD }}' > ./ansible/.sudo_password
 
-      - name: Run ansible config
+      - name: Run Ansible config
         run: bash ./run_config.sh
