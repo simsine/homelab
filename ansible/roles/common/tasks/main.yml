@@ -5,6 +5,15 @@
     mode: "0644"
   become: true
 
+- name: Write ssh hardening config
+  ansible.builtin.template:
+    src: templates/99_ssh_hardening.conf
+    dest: /etc/ssh/sshd_config.d
+    validate: /usr/sbin/sshd -t -f %s
+    mode: "0644"
+  notify: Restart ssh
+  become: true
+
 - name: Install common packages
   ansible.builtin.apt:
     pkg:
