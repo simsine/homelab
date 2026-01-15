@@ -1,5 +1,9 @@
 # Aperture Science Home Laboratories
 
+## Hostnames
+
+Hostnames are based on [characters from the Portal universe](https://theportalwiki.com/wiki/Characters) by Valve
+
 ## Technical diagram
 
 Can be edited with [drawio](https://app.diagrams.net/)
