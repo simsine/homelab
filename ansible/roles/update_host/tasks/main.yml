@@ -5,12 +5,12 @@
     upgrade: true
   become: true
 
-- name: Check if reboot is needed
+- name: Check if system reboot is needed
   ansible.builtin.stat:
     path: /var/run/reboot-required
   register: update_host_reboot_required
 
-- name: Reboot if needed
+- name: Reboot system if needed
   ansible.builtin.reboot:
   become: true
   when: update_host_reboot_required.stat.exists
