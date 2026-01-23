@@ -1,4 +1,4 @@
-- name: Write motd
+- name: Write message of the day
   ansible.builtin.template:
     src: templates/motd.j2
     dest: /etc/motd
