@@ -17,8 +17,8 @@ jobs:
       - name: Install ansible-lint
         run: pip install ansible-lint
 
-      - name: Install ansible.posix
-        run: ansible-galaxy collection install ansible.posix
+      - name: Run Ansible setup
+        run: bash ./setup_ansible.sh
 
       - name: Lint all Ansible files
         run: ansible-lint ./ansible
