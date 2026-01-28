@@ -1,4 +1,14 @@
 ---
+- name: Common configs
+  hosts: all
+  roles:
+    - role: community.beszel.agent
+      vars:
+        agent_public_key: "{{ beszel_agent_public_key  }}"
+        agent_token: "{{ beszel_agent_token }}"
+        agent_hub_url: "{{ beszel_agent_hub_url }}"
+  become: true
+
 - name: Glados config
   become: true
   hosts:
@@ -26,13 +36,3 @@
     - wheatley
   roles:
     - common
-
-- name: Install and configure a Beszel binary agent with public key.
-  hosts: all
-  roles:
-    - role: community.beszel.agent
-      vars:
-        agent_public_key: "{{ beszel_agent_public_key  }}"
-        agent_token: "{{ beszel_agent_token }}"
-        agent_hub_url: "{{ beszel_agent_hub_url }}"
-  become: true

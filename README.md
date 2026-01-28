@@ -12,10 +12,14 @@ Can be edited with [drawio](https://app.diagrams.net/)
 
 ## Ansible
 
-First create a sudo password file and enter the sudo password
+First create a sudo password file and vault key file
 
 ```bash
-nano ./ansible/.sudo_password
+nano ./ansible/.ansible_sudo_password
+```
+
+```bash
+nano ./ansible/.ansible_vault_key
 ```
 
 To run ansible configurations
