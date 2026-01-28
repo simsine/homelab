@@ -1,6 +1,13 @@
-- name: Create copyparty data dir
+- name: Create copyparty public data dir
   ansible.builtin.file:
-    path: /srv/copyparty
+    path: /srv/copyparty/pub
+    state: directory
+    mode: "0644"
+  become: true
+
+- name: Create copyparty private data dir
+  ansible.builtin.file:
+    path: /srv/copyparty/priv
     state: directory
     mode: "0644"
   become: true

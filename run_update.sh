@@ -10,4 +10,4 @@ if ! tailscale status > /dev/null; then
 	tailscale switch headscale.simsine.no
 fi
 
-ansible-playbook update_hosts.yml --become-password-file .sudo_password --verbose
+ansible-playbook update_hosts.yml --become-password-file .ansible_sudo_password --vault-password-file .ansible_vault_key --verbose
