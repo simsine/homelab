@@ -11,13 +11,12 @@
     dest: /etc/ssh/sshd_config.d
     validate: /usr/sbin/sshd -t -f %s
     mode: "0644"
-  notify: Restart ssh
+  notify: Restart sshd
   become: true
 
 - name: Install common packages
   ansible.builtin.apt:
     pkg:
       - htop
-      - podman
       - ncdu
       - nmap

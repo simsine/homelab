@@ -30,7 +30,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Ansible setup
-        run: bash ./setup.sh
+        run: bash ./setup_ansible.sh
 
       - name: Write ansible sudo password file
         run: printf '%s' '${{ secrets.ANSIBLE_SUDO_PASSWORD }}' > ./ansible/.sudo_password
