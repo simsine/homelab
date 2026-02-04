@@ -2,7 +2,7 @@
 
 ## Hostnames
 
-Hostnames are based on [characters from the Portal universe]([https://theportalwiki.com/wiki/Characters](https://web.archive.org/web/20250815063639/https://theportalwiki.com/wiki/Characters)) by Valve
+Hostnames are based on [characters from the Portal universe](https://web.archive.org/web/20250815063639/https://theportalwiki.com/wiki/Characters) by Valve
 
 ## Technical diagram
 
