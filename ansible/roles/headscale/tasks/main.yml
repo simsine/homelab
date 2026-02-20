@@ -3,6 +3,7 @@
     src: templates/config.yaml
     dest: /etc/headscale
     mode: "0644"
+    validate: /usr/bin/headscale configtest -c %s
   become: true
   notify: Restart Headscale
 
@@ -11,7 +12,6 @@
     src: templates/acl.json
     dest: /etc/headscale
     mode: "0644"
-    validate: /usr/bin/headscale configtest -f %s
   become: true
   notify: Restart Headscale
 
