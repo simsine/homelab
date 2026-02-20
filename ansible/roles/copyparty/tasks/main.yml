@@ -5,6 +5,13 @@
     mode: "0644"
   become: true
 
+- name: Create copyparty share data dir
+  ansible.builtin.file:
+    path: /srv/copyparty/share
+    state: directory
+    mode: "0644"
+  become: true
+
 - name: Create copyparty private data dir
   ansible.builtin.file:
     path: /srv/copyparty/priv
