@@ -29,6 +29,7 @@ Volume=/etc/copyparty:/cfg:z
 # Non-root setup:
 #   Change /mnt to something owned by your user, e.g., /home/<USER>/copyparty/sharing:/w:z
 Volume=/srv/copyparty/pub:/files/pub:z
+Volume=/srv/copyparty/share:/files/share:z
 Volume=/srv/copyparty/priv:/files/priv:z
 
 # Give the container time to stop in case the thumbnailer is still running.
