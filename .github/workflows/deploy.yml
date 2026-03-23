@@ -27,7 +27,7 @@ jobs:
           known_hosts: ${{ secrets.KNOWN_HOSTS }}
 
       - name: Checkout the repository
-        uses: actions/checkout@latest
+        uses: actions/checkout@v6
 
       - name: Run Ansible setup
         run: bash ./setup_ansible.sh
