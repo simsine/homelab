@@ -5,7 +5,7 @@ cd ansible
 echo "Running homelab Ansible host updates"
 
 if ! tailscale status > /dev/null; then
-	ehco "Starting tailscale"
+	echo "Starting tailscale"
 	tailscale up
 	tailscale switch headscale.simsine.no
 fi
