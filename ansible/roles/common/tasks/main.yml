@@ -14,9 +14,18 @@
   notify: Restart sshd
   become: true
 
+- name: Write tmux config file
+  ansible.builtin.template:
+    src: templates/.tmux.conf
+    dest: /home/simsine
+    mode: "0644"
+  become: false
+
 - name: Install common packages
   ansible.builtin.apt:
     pkg:
       - htop
       - ncdu
       - nmap
+      - tmux
+      - fastfetch
