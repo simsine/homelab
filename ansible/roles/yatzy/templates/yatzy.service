@@ -1,9 +1,9 @@
 [Unit]
-Description=Dat109 Yatzy applikasjon
+Description=Dat109 Yatzy application
 After=network.target
 
 [Service]
-ExecStart="/usr/bin/java -jar /home/simsine/yatzy.war --server.port=8008"
+ExecStart=/usr/bin/java -jar /home/simsine/yatzy.war --server.port=8008
 Type=simple
 
 [Install]

@@ -4,7 +4,7 @@
   roles:
     - role: community.beszel.agent
       vars:
-        agent_public_key: "{{ beszel_agent_public_key  }}"
+        agent_public_key: "{{ beszel_agent_public_key }}"
         agent_token: "{{ beszel_agent_token }}"
         agent_hub_url: "{{ beszel_agent_hub_url }}"
   become: true
@@ -23,16 +23,18 @@
     - kuma
     - role: community.beszel.hub
 
-- name: Adventure config
-  become: true
-  hosts:
-    - adventure
-  roles:
-    - common
+# ? Disabled while offline
 
-- name: Wheatley config
-  become: true
-  hosts:
-    - wheatley
-  roles:
-    - common
+# - name: Adventure config
+#   become: true
+#   hosts:
+#     - adventure
+#   roles:
+#     - common
+
+# - name: Wheatley config
+#   become: true
+#   hosts:
+#     - wheatley
+#   roles:
+#     - common
