@@ -1,14 +1,43 @@
-# Aperture Science Home Laboratories
+# Homelab
 
-## Hostnames
+```
+|---------------- Welcome to -------------------|
+|      Aperture Science Home Laboratories       |
+|-----------------------------------------------|
+|                 .,-:;//;:=,                   |
+|             . :H@@@MM@M#H/.,+%;,              |
+|           ,/X+ +M@@M@MM%=,-%HMMM@X/,          |
+|         -+@MM; $M@@MH+-,;XMMMM@MMMM@+-        |
+|       ;@M@@M- XM@X;. -+XXXXXHHH@M@M#@/.       |
+|     ,%MM@@MH ,@%=            .---=-=:=,.      |
+|     =@#@@@MX .,              -%HX$$%%%+;      |
+|     =-./@M@M$                  .;@MMMM@MM:    |
+|     X@/ -$MM/                    .+MM@@@M$    |
+|   ,@M@H: :@:                    . =X#@@@@-    |
+|   ,@@@MMX, .                    /H- ;@M@M=    |
+|   .H@@@@M@+,                    %MM+..%#$.    |
+|     /MMMM@MMH/.                  XM@MH; =;    |
+|     /%+%$XHH@$=              , .H@@@@MX,      |
+|       .=--------.           -%H.,@@@@@MX,     |
+|       .%MM@@@HHHXX$$$%+= .:$MMX =M@@MM%.      |
+|         =XMMM@MM@MM#H;,-+HMM@M+ /MMMX=        |
+|           =%@M@M#@$-.=$@MM@@@M; %M%=          |
+|             ,:+$+-,/H#MMMMMMM@= =,            |
+|                   =++%%%%+/:-.                |
+|-----------------------------------------------|
+```
 
-Hostnames are based on [characters from the Portal universe](https://web.archive.org/web/20250815063639/https://theportalwiki.com/wiki/Characters) by Valve
+## Thematics
 
-## Technical diagram
+The setup is themed around the portal universe created by Valve Software where nodes are named after [characters from said universe](https://web.archive.org/web/20250815063639/https://theportalwiki.com/wiki/Characters)
 
-Can be edited with [drawio](https://app.diagrams.net/)
+## Technical overview
 
-![Homelab diagram](./homelab.drawio.png)
+Nodes in the setup consist of Virtual Private Server *(VPS)* instances, stationary computers and portable devices.
+
+The following technical diagram illustrates the top level structure and can be edited with [draw.io](https://app.diagrams.net/)
+
+![Technical diagram](./homelab.drawio.png)
 
 ## Ansible
 
@@ -34,13 +63,15 @@ To run ansible host updates
 ./run_update.sh
 ```
 
-## Headscale as exit node
+## Enable exit nodes in tailnet
 
-If the headscale node has an id of 2 it can be allowed to be used as an exit node by entering the following
+The headscale cli can be used to enable a node with the given <NODE-ID> to act as an exit node in the tailnet
 
 ```bash
 sudo headscale nodes approve-routes -i <NODE-ID> -r 0.0.0.0/0
 ```
+
+This then needs to be enabled on the node itself using the tailscale cli
 
 ```bash
 sudo tailscale set --advertise-exit-node
