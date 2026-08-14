@@ -3,7 +3,8 @@
 		"group:admin": ["{{ default_username }}@"]
 	},
 	"tagOwners": {
-		"tag:server": ["group:admin"]
+		"tag:server": ["group:admin"],
+		"tag:mc": ["group:admin"]
 	},
 	"acls": [
 		{
@@ -20,6 +21,16 @@
 			"action": "accept",
 			"src": ["tag:server"],
 			"dst": ["tag:server:*"]
+		},
+		{
+			"action": "accept",
+			"src": ["tag:server"],
+			"dst": ["tag:mc:25565"]
+		},
+		{
+			"action": "accept",
+			"src": ["tag:server"],
+			"dst": ["tag:mc:24454"]
 		}
 	]
 }

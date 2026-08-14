@@ -2,6 +2,7 @@
 - name: Common configs
   hosts: all
   roles:
+    - common
     - role: community.beszel.agent
       vars:
         agent_public_key: "{{ beszel_agent_public_key }}"
@@ -14,11 +15,9 @@
   hosts:
     - glados
   roles:
-    - common
     - headscale
     - nginx
     - yatzy
-    - haproxy
     - copyparty
     - kuma
     - role: community.beszel.hub
