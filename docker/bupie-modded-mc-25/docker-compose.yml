@@ -2,6 +2,7 @@ services:
   mc:
     image: itzg/minecraft-server:java17
     restart: on-failure
+    stop_grace_period: 1m
     tty: true
     stdin_open: true
     ports:
