@@ -5,7 +5,7 @@
     mode: "0644"
     validate: /usr/sbin/haproxy -c -f %s
   become: true
-  notify: Restart HAProxy
+  # notify: Restart HAProxy
 
 - name: Enable HAProxy service
   ansible.builtin.systemd_service:
