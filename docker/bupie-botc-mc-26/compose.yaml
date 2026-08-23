@@ -7,7 +7,7 @@ services:
     stdin_open: true
     ports:
       - "25565:25565"
-      - "24454:24454/udp"
+      - "24454:24454/udp" # Simple voice chat
     environment:
       EULA: "TRUE"
       VERSION: 1.21.1
@@ -23,11 +23,11 @@ services:
       ICON: /data/bupie.jpg
       ALLOW_FLIGHT: "TRUE"
       SPAWN_PROTECTION: 0
-      ENABLE_WHITELIST: true
       ENABLE_COMMAND_BLOCK: true
       MODE: "adventure"
       PVP: false
-      DIFFICULTY: peaceful
+      DIFFICULTY: "peaceful"
+      ENABLE_WHITELIST: true
       WHITELIST: |
         XPhaze_
         Coymo_
