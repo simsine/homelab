@@ -51,16 +51,28 @@ nano ./ansible/.ansible_sudo_password
 nano ./ansible/.ansible_vault_key
 ```
 
-To run ansible configurations
+Then setup Ansible by installing the required dependencies using the following script
+
+```bash
+./setup_ansible.sh
+```
+
+To run Ansible configurations
 
 ```bash
 ./run_config.sh
 ```
 
-To run ansible host updates
+To run Ansible host updates
 
 ```bash
 ./run_update.sh
+```
+
+To update the secret Ansbile group variables
+
+```bash
+./edit_group_variables.sh
 ```
 
 ## Enable exit nodes in tailnet

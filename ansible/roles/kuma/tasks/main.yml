@@ -10,5 +10,7 @@
     src: templates/kuma.container
     dest: /etc/containers/systemd
     mode: "0644"
-  notify: Reload systemd
+  notify:
+    - Reload systemd
+    - Restart kuma
   become: true
