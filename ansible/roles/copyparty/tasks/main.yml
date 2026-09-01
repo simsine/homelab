@@ -43,3 +43,18 @@
     - Reload Systemd
     - Restart Copyparty
   become: true
+
+- name: Add nginx user to nginx group
+  ansible.builtin.user:
+    name: nginx
+    group: nginx
+    state: present
+
+- name: Create copyparty socket dir
+  ansible.builtin.file:
+    path: /run/copyparty
+    state: directory
+    mode: "02770" # With setgit bit to inherit user:group state
+    owner: "root"
+    group: "nginx"
+  become: true
