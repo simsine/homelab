@@ -56,3 +56,9 @@ WantedBy=default.target
 [Service]
 # Give the container time to start in case it needs to pull the image
 TimeoutStartSec=600
+User=root
+Group=nginx
+# Systemd creates a runtime directory of /run/copyparty on the host
+RuntimeDirectory=copyparty
+# Set the mode of the runtime directory with setgid (2) bit to inherit gid
+RuntimeDirectoryMode=2770
