@@ -15,6 +15,7 @@
   hosts:
     - glados
   roles:
+    - kanidm
     - headscale
     - nginx
     - yatzy
