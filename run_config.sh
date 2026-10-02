@@ -1,13 +1,14 @@
 #! /usr/bin/bash
 
-cd ansible
+pushd ansible
 
 echo "Running homelab Ansible configuration"
 
 if ! tailscale status > /dev/null; then
 	echo "Starting tailscale"
 	tailscale up
-	tailscale switch headscale.simsine.no
 fi
+
+tailscale switch headscale.simsine.noJ
 
 ansible-playbook homelab_config.yml --become-password-file .ansible_sudo_password --vault-password-file .ansible_vault_key

@@ -1,6 +1,6 @@
 #! /usr/bin/bash
 
-cd ansible
+pushd ansible
 
 echo "Installing Ansible dependencies"
 
