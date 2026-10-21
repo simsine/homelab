@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#! /usr/bin/env bash
 
 cd ansible
 
@@ -13,7 +13,10 @@ tailscale switch headscale.simsine.no
 
 if [ -e local_config.yml ]
 then
-	ansible-playbook local_config.yml --become-password-file .ansible_sudo_password --vault-password-file .ansible_vault_key
+	ansible-playbook local_config.yml \
+		--verbose \
+		--become-password-file .ansible_sudo_password \
+		--vault-password-file .ansible_vault_key
 else
 	echo "No local config found please create it first."
 fi
