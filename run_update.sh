@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#! /usr/bin/env bash
 
 pushd ansible
 
@@ -11,4 +11,7 @@ fi
 
 tailscale switch headscale.simsine.no
 
-ansible-playbook update_hosts.yml --become-password-file .ansible_sudo_password --vault-password-file .ansible_vault_key --verbose
+ansible-playbook update_hosts.yml \
+	--verbose \
+	--become-password-file .ansible_sudo_password \
+	--vault-password-file .ansible_vault_key

@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#! /usr/bin/env bash
 
 pushd ansible
 
@@ -9,6 +9,8 @@ if ! tailscale status > /dev/null; then
 	tailscale up
 fi
 
-tailscale switch headscale.simsine.noJ
+tailscale switch headscale.simsine.no
 
-ansible-playbook homelab_config.yml --become-password-file .ansible_sudo_password --vault-password-file .ansible_vault_key
+ansible-playbook homelab_config.yml \
+	--become-password-file .ansible_sudo_password \
+	--vault-password-file .ansible_vault_key
