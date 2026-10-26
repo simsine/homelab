@@ -8,6 +8,8 @@
         agent_public_key: "{{ beszel_agent_public_key }}"
         agent_token: "{{ beszel_agent_token }}"
         agent_hub_url: "{{ beszel_agent_hub_url }}"
+        agent_user_groups:
+          - "systemd-journal"
   become: true
 
 - name: Glados config
