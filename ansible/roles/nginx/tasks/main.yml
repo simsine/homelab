@@ -1,3 +1,7 @@
+- name: Install nginx
+  ansible.builtin.include_role:
+    name: nginxinc.nginx
+
 - name: Install required nginx packages
   ansible.builtin.apt:
     pkg:
