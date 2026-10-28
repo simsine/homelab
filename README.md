@@ -41,7 +41,7 @@ The following technical diagram illustrates the top level structure and can be e
 
 ## Ansible
 
-First create a sudo password file and vault key file
+First write the vault key file locally
 
 
 ```bash
