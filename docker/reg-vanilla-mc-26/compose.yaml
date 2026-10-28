@@ -16,8 +16,8 @@ services:
       MAX_MEMORY: 6G
       ENABLE_RCON: "true"
       TZ: CET
-      SERVER_NAME: "Bæsj Garden"
-      MOTD: "Bæsjesuppe"
+      SERVER_NAME: "Bupie's Garden"
+      MOTD: "Stay gloopy"
       ALLOW_FLIGHT: "TRUE"
       SPAWN_PROTECTION: 0
       ENABLE_COMMAND_BLOCK: false
