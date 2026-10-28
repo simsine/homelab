@@ -32,10 +32,7 @@ jobs:
       - name: Run Ansible setup
         run: bash ./setup_ansible.sh
 
-      - name: Write Ansible sudo password file
-        run: printf '%s' '${{ secrets.ANSIBLE_SUDO_PASSWORD }}' > ./ansible/.ansible_sudo_password
-
-      - name: Write Ansbile vault key file
+      - name: Write Ansible vault key file
         run: printf '%s' '${{ secrets.ANSIBLE_VAULT_KEY }}' > ./ansible/.ansible_vault_key
 
       - name: Run Ansible config

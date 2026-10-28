@@ -1,5 +1,5 @@
 [Container]
-Image=docker.io/copyparty/ac:1.20.23
+Image=docker.io/copyparty/ac:{{ copyparty_version }}
 ContainerName=copyparty
 
 # Uncomment to enable auto-updates
@@ -38,11 +38,11 @@ Volume=/srv/copyparty/priv:/files/priv:z
 # StopTimeout=15
 
 # hide it from logs with "/._" so it matches the default --lf-url filter
-HealthCmd="wget --spider -q 127.0.0.1:3923/?reset=/._"
-HealthInterval=1m
-HealthTimeout=2s
-HealthRetries=5
-HealthStartPeriod=15s
+# HealthCmd="wget --spider -q 127.0.0.1:3923/?reset=/._"
+# HealthInterval=1m
+# HealthTimeout=2s
+# HealthRetries=5
+# HealthStartPeriod=15s
 
 [Unit]
 After=default.target

@@ -13,5 +13,4 @@ tailscale switch headscale.simsine.no
 
 ansible-playbook update_hosts.yml \
 	--verbose \
-	--become-password-file .ansible_sudo_password \
 	--vault-password-file .ansible_vault_key

@@ -1,5 +1,5 @@
 [Container]
-Image=docker.io/kanidm/server:1.11.2
+Image=docker.io/kanidm/server:{{ kanidm_version }}
 ContainerName=kanidm
 # Uncomment to enable auto-updates
 # AutoUpdate=registry
