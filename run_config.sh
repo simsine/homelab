@@ -12,5 +12,4 @@ fi
 tailscale switch headscale.simsine.no
 
 ansible-playbook homelab_config.yml \
-	--become-password-file .ansible_sudo_password \
 	--vault-password-file .ansible_vault_key

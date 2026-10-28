@@ -43,9 +43,6 @@ The following technical diagram illustrates the top level structure and can be e
 
 First create a sudo password file and vault key file
 
-```bash
-nano ./ansible/.ansible_sudo_password
-```
 
 ```bash
 nano ./ansible/.ansible_vault_key

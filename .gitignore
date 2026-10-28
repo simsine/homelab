@@ -4,7 +4,6 @@
 .vscode
 .ansible
 
-.ansible_sudo_password
 .ansible_vault_key
 
 local_config.yml
