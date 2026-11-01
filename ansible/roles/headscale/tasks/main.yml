@@ -1,3 +1,47 @@
+- name: Gather package facts
+  ansible.builtin.package_facts:
+    manager: auto
+
+- name: Set headscale is installed
+  ansible.builtin.set_fact:
+    headscale_is_installed: "{{ 'headscale' in ansible_facts.packages }}"
+
+- name: Get installed headscale version
+  ansible.builtin.command:
+    cmd: "headscale version --output json-line"
+  register: headscale_version_output
+  changed_when: false
+  when: headscale_is_installed is true
+
+- name: Parse headscale version
+  ansible.builtin.set_fact:
+    headscale_current_version: "{{ headscale_version_output.stdout | from_json }}"
+  when: headscale_is_installed is true
+
+- name: Set current headscale version
+  ansible.builtin.set_fact:
+    headscale_current_version: "{{ headscale_current_version.version | regex_replace('^v', '') }}"
+  when: headscale_is_installed is true
+
+- name: Download headscale package
+  ansible.builtin.get_url:
+    url: "https://github.com/juanfont/headscale/releases/download/v{{ headscale_version }}/headscale_{{ headscale_version }}_linux_amd64.deb"
+    dest: /tmp/headscale.deb
+    mode: "0644"
+    force: true
+  become: true
+  changed_when: true
+  when: headscale_is_installed is false or headscale_version is version(headscale_current_version, '>')
+
+- name: Install headscale deb package
+  ansible.builtin.apt:
+    deb: "/tmp/headscale.deb"
+    state: present
+  become: true
+  changed_when: true
+  when: headscale_is_installed is false or headscale_version is version(headscale_current_version, '>')
+  notify: Restart Headscale
+
 - name: Write Headscale config
   ansible.builtin.template:
     src: templates/config.yaml

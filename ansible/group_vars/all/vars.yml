@@ -1,5 +1,5 @@
 ---
-headscale_version: "0.29.6"
+headscale_version: "0.29.7"
 copyparty_version: "1.20.23"
 kanidm_version: "1.11.2"
 kuma_version: "2.5.6"
