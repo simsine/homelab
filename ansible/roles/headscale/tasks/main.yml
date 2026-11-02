@@ -23,10 +23,34 @@
     headscale_current_version: "{{ headscale_current_version.version | regex_replace('^v', '') }}"
   when: headscale_is_installed is true
 
+# https://github.com/kazauwa/ansible-role-headscale/blob/main/tasks/install.yml#L18C1-L40
+- name: Get headscale release checksums
+  ansible.builtin.uri:
+    url: 'https://github.com/juanfont/headscale/releases/download/v{{ headscale_version }}/checksums.txt'
+    return_content: true
+  register: headscale_checksums_file
+  when: headscale_is_installed is false or headscale_version is version(headscale_current_version, '>')
+
+- name: Parse headscale checksums
+  ansible.builtin.set_fact:
+    headscale_checksums: '{{ headscale_checksums_file.content | split | reverse }}'
+  when: headscale_is_installed is false or headscale_version is version(headscale_current_version, '>')
+
+- name: Parse headscale checksums (cont.)
+  ansible.builtin.set_fact:
+    headscale_checksums: '{{ dict(headscale_checksums[::2] | zip_longest(headscale_checksums[1::2])) }}'
+  when: headscale_is_installed is false or headscale_version is version(headscale_current_version, '>')
+
+- name: Set headscale checksum
+  ansible.builtin.set_fact:
+    headscale_release_name: "headscale_{{ headscale_version }}_linux_amd64.deb"
+  when: headscale_is_installed is false or headscale_version is version(headscale_current_version, '>')
+
 - name: Download headscale package
   ansible.builtin.get_url:
     url: "https://github.com/juanfont/headscale/releases/download/v{{ headscale_version }}/headscale_{{ headscale_version }}_linux_amd64.deb"
     dest: /tmp/headscale.deb
+    checksum: "sha256:{{ headscale_checksums[headscale_release_name] }}"
     mode: "0644"
     force: true
   become: true
