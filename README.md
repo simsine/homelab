@@ -74,7 +74,7 @@ To update the secret Ansbile group variables
 
 ## Enable exit nodes in tailnet
 
-The headscale cli can be used to enable a node with the given <NODE-ID> to act as an exit node in the tailnet
+The headscale cli can be used to enable a node with the given `<NODE-ID>` to act as an exit node in the tailnet. This allows other nodes to optionally route all their traffic through the exit node.
 
 ```bash
 sudo headscale nodes approve-routes -i <NODE-ID> -r 0.0.0.0/0
