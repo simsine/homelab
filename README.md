@@ -66,10 +66,10 @@ To run Ansible host updates
 ./run_update.sh
 ```
 
-To update the secret Ansbile group variables
+To update the encrypted Ansible vault variables
 
 ```bash
-./edit_group_variables.sh
+./edit_vault.sh
 ```
 
 ## Enable exit nodes in tailnet
